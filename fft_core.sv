@@ -40,7 +40,7 @@ module fft_stage4 #(
       .x_N (x[i]),
       .x_M (x[i+8]),
       .w_N (w[i]),
-      .y_N (y[i])
+      .y_N (y[i]),
       .y_M (y[i+8])
     );
   end endgenerate
@@ -64,7 +64,7 @@ module fft_stage3 #(
       .x_N (x[i]),
       .x_M (x[i+4]),
       .w_N (w[i]),
-      .y_N (y[i])
+      .y_N (y[i]),
       .y_M (y[i+4])
     );
     fft_compute #(DATA_WIDTH) fft_compute_inst1 (
@@ -72,7 +72,7 @@ module fft_stage3 #(
       .x_N (x[i+8]),
       .x_M (x[i+12]),
       .w_N (w[i+4]),
-      .y_N (y[i+8])
+      .y_N (y[i+8]),
       .y_M (y[i+12])
     );
   end endgenerate
@@ -97,7 +97,7 @@ module fft_stage2 #(
         .x_N (x[2*i]),
         .x_M (x[2*i+2]),
         .w_N (w[i]),
-        .y_N (y[2*i])
+        .y_N (y[2*i]),
         .y_M (y[2*i+2])
       );
     end else begin
@@ -106,7 +106,7 @@ module fft_stage2 #(
         .x_N (x[2*i-1]),
         .x_M (x[2*i+1]),
         .w_N (w[i]),
-        .y_N (y[2*i-1])
+        .y_N (y[2*i-1]),
         .y_M (y[2*i+1])
       );
     end
@@ -131,7 +131,7 @@ module fft_stage1 #(
       .x_N (x[2*i]),
       .x_M (x[2*i+1]),
       .w_N (w[i]),
-      .y_N (y[2*i])
+      .y_N (y[2*i]),
       .y_M (y[2*i+1])
     );
   end endgenerate
