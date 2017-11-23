@@ -41,6 +41,7 @@ module fft_controller #(
   end
   
   assign fft_if_write = fft_data_valid[9];
+  assign error = rd_full;
   
   genvar i;
   generate for (i=0; i<N_POINT_FFT; i++) begin
