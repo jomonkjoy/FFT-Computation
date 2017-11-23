@@ -21,7 +21,7 @@ module fft_N_point_core #(
   fft_stage3 #(DATA_WIDTH,N_POINT) fft_stage3 (.clk(clk), .x(x_2), .w(w_3), .y(x_3));
   fft_stage4 #(DATA_WIDTH,N_POINT) fft_stage4 (.clk(clk), .x(x_3), .w(w_4), .y(y  ));
   
-endmdoule
+endmodule
 
 module fft_stage4 #(
   parameter DATA_WIDTH = 16,
@@ -45,7 +45,7 @@ module fft_stage4 #(
     );
   end endgenerate
   
-endmdoule
+endmodule
 
 module fft_stage3 #(
   parameter DATA_WIDTH = 16,
@@ -77,7 +77,7 @@ module fft_stage3 #(
     );
   end endgenerate
   
-endmdoule
+endmodule
 
 module fft_stage2 #(
   parameter DATA_WIDTH = 16,
@@ -112,7 +112,7 @@ module fft_stage2 #(
     end
   end endgenerate
   
-endmdoule
+endmodule
 
 module fft_stage1 #(
   parameter DATA_WIDTH = 16,
@@ -136,4 +136,4 @@ module fft_stage1 #(
     );
   end endgenerate
   
-endmdoule
+endmodule
