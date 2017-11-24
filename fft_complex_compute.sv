@@ -1,3 +1,7 @@
+////////////////////////////////////////
+// Complex Multipllication 
+// (a+bi)(c+di) = ac + adi + bci + bdi2 = (ac-bd) + (ad+bc)i
+////////////////////////////////////////
 module fft_complex_compute #(
   parameter DATA_WIDTH = 32
 ) (
