@@ -32,7 +32,7 @@ module fft_controller #(
   
   logic [9:0] fft_data_valid;
   
-  always_ff @(posedge clkk) begin
+  always_ff @(posedge fft_clk) begin
     if (reset) begin
       fft_data_valid <= 10'd0;
     end else begin
