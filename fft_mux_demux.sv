@@ -21,6 +21,28 @@ module fft_demux_1x2048 #(
 );
 
 endmodule
+// 256x1 mux/1x256 demux design
+module fft_mux_256x1 #(
+  parameter int DATA_WIDTH = 8
+) (
+  input  logic clk,
+  input  logic [7:0] sel,
+  input  logic [DATA_WIDTH-1:0] data_i[256],
+  output logic [DATA_WIDTH-1:0] data_o
+);
+
+endmodule
+
+module fft_demux_1x256 #(
+  parameter int DATA_WIDTH = 8
+) (
+  input  logic clk,
+  input  logic [7:0] sel,
+  input  logic [DATA_WIDTH-1:0] data_i,
+  output logic [DATA_WIDTH-1:0] data_o[256]
+);
+
+endmodule
 // 16x1 mux/1x16 demux design
 module fft_mux_16x1 #(
   parameter int DATA_WIDTH = 8
