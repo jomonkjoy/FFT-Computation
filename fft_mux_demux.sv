@@ -68,3 +68,43 @@ module fft_demux_1x16 #(
   end
   
 endmodule
+// 8x1 mux/1x8 demux design
+module fft_mux_8x1 #(
+  parameter int DATA_WIDTH = 8
+) (
+  input  logic clk,
+  input  logic [2:0] sel,
+  input  logic [DATA_WIDTH-1:0] data_i[8],
+  output logic [DATA_WIDTH-1:0] data_o
+);
+  
+  always_ff @(posedge clk) begin
+    case(sel[2:0])
+      3'h0 : data_o <= data_i[00];
+      3'h1 : data_o <= data_i[01];
+      3'h2 : data_o <= data_i[02];
+      3'h3 : data_o <= data_i[03];
+      3'h4 : data_o <= data_i[04];
+      3'h5 : data_o <= data_i[05];
+      3'h6 : data_o <= data_i[06];
+      3'h7 : data_o <= data_i[07];
+    endcase
+  end
+  
+endmodule
+
+module fft_demux_1x8 #(
+  parameter int DATA_WIDTH = 8
+) (
+  input  logic clk,
+  input  logic [2:0] sel,
+  input  logic [DATA_WIDTH-1:0] data_i,
+  output logic [DATA_WIDTH-1:0] data_o[8]
+);
+  
+  always_ff @(posedge clk) begin
+    data_o[sel] <= data_i;
+  end
+  
+endmodule
+
