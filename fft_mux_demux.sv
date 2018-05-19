@@ -30,7 +30,34 @@ module fft_mux_256x1 #(
   input  logic [DATA_WIDTH-1:0] data_i[256],
   output logic [DATA_WIDTH-1:0] data_o
 );
-
+  
+  logic [DATA_WIDTH-1:0] data[16];
+  logic [3:0] sel_r;
+  
+  always_ff @(posedge clk) begin
+    sel_r <= sel[3:0];
+  end
+  
+  generate for (genvar i=0; i<16; i++) begin:gen
+    fft_mux_16x1 #(
+      .DATA_WIDTH(DATA_WIDTH)
+    ) fft_mux_16x1_inst0 (
+      .clk    (clk),
+      .sel    (sel[7:4]),
+      .data_i (data_i[16*i+:16]),
+      .data_o (data[i])
+    );
+  end endgenerate
+  
+  fft_mux_16x1 #(
+    .DATA_WIDTH(DATA_WIDTH)
+  ) fft_mux_16x1_inst1 (
+    .clk    (clk),
+    .sel    (sel_r[3:0]),
+    .data_i (data),
+    .data_o (data_o)
+  );
+  
 endmodule
 
 module fft_demux_1x256 #(
@@ -41,7 +68,34 @@ module fft_demux_1x256 #(
   input  logic [DATA_WIDTH-1:0] data_i,
   output logic [DATA_WIDTH-1:0] data_o[256]
 );
-
+  
+  logic [DATA_WIDTH-1:0] data[16];
+  logic [3:0] sel_r;
+  
+  always_ff @(posedge clk) begin
+    sel_r <= sel[3:0];
+  end
+  
+  generate for (genvar i=0; i<16; i++) begin:gen
+    fft_demux_1x16 #(
+      .DATA_WIDTH(DATA_WIDTH)
+    ) fft_demux_1x16_inst1 (
+      .clk    (clk),
+      .sel    (sel_r[3:0]),
+      .data_i (data[i]),
+      .data_o (data_o[16*i+:16])
+    );
+  end endgenerate
+  
+  fft_demux_1x16 #(
+    .DATA_WIDTH(DATA_WIDTH)
+  ) fft_demux_1x16_inst0 (
+    .clk    (clk),
+    .sel    (sel[7:4]),
+    .data_i (data_i),
+    .data_o (data)
+  );
+  
 endmodule
 // 16x1 mux/1x16 demux design
 module fft_mux_16x1 #(
