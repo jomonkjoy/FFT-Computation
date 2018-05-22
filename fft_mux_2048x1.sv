@@ -86,7 +86,7 @@ module fft_mux_16x1 #(
 );
   
   always_ff @(posedge clk) begin
-    case(sel[3:0])
+    unique case(sel[3:0])
       4'h0 : data_o <= data_i[00];
       4'h1 : data_o <= data_i[01];
       4'h2 : data_o <= data_i[02];
@@ -118,7 +118,7 @@ module fft_mux_8x1 #(
 );
   
   always_ff @(posedge clk) begin
-    case(sel[2:0])
+    unique case(sel[2:0])
       3'h0 : data_o <= data_i[00];
       3'h1 : data_o <= data_i[01];
       3'h2 : data_o <= data_i[02];
