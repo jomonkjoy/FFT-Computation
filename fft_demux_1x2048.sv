@@ -6,7 +6,7 @@ module fft_bin2dec_1x16 (
 );
   
   always_ff @(posedge clk) begin
-    case(bin[3:0])
+    unique case(bin[3:0])
       4'h0 : dec <= 16'h0001;
       4'h1 : dec <= 16'h0002;
       4'h2 : dec <= 16'h0004;
@@ -35,7 +35,7 @@ module fft_bin2dec_1x8 (
 );
   
   always_ff @(posedge clk) begin
-    case(bin[2:0])
+    unique case(bin[2:0])
       3'h0 : dec <= 8'h01;
       3'h1 : dec <= 8'h02;
       3'h2 : dec <= 8'h04;
