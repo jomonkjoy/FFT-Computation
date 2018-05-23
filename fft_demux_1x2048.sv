@@ -1,9 +1,17 @@
 // 16x1 mux/1x16 demux design
-module fft_bin2dec_1x16 (
+module fft_bin2dec_1x16 #(
+  parameter int DATA_WIDTH = 8
+) (
   input  logic clk,
   input  logic [3:0]  bin,
+  input  logic [DATA_WIDTH-1:0] data_i,
+  output logic [DATA_WIDTH-1:0] data_o,
   output logic [15:0] dec
 );
+  
+  always_ff @(posedge clk) begin
+    data_o <= data_i;
+  end
   
   always_ff @(posedge clk) begin
     unique case(bin[3:0])
@@ -28,11 +36,19 @@ module fft_bin2dec_1x16 (
   
 endmodule
 // 8x1 mux/1x8 demux design
-module fft_bin2dec_1x8 (
+module fft_bin2dec_1x8 #(
+  parameter int DATA_WIDTH = 8
+) (
   input  logic clk,
   input  logic [2:0] bin,
+  input  logic [DATA_WIDTH-1:0] data_i,
+  output logic [DATA_WIDTH-1:0] data_o,
   output logic [7:0] dec
 );
+  
+  always_ff @(posedge clk) begin
+    data_o <= data_i;
+  end
   
   always_ff @(posedge clk) begin
     unique case(bin[2:0])
