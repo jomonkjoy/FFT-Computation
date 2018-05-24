@@ -39,6 +39,15 @@ module ofdm_modulation (
   end
   
   always_ff @(posedge clk) begin
+    unique case(qam_symbol[5:4])
+      2'b00 : qam_inphase_o <= {1'b0,qam_inphase};
+      2'b01 : qam_inphase_o <= {1'b0,qam_inphase};
+      2'b10 : qam_inphase_o <= {1'b1,qam_inphase};
+      2'b11 : qam_inphase_o <= {1'b1,qam_inphase};
+    endcase
+  end
+  
+  always_ff @(posedge clk) begin
     unique case(qam_symbol[3:0])
       4'h0 : qam_quadrat <= QAM_Q[00];
       4'h1 : qam_quadrat <= QAM_Q[01];
@@ -56,6 +65,15 @@ module ofdm_modulation (
       4'hD : qam_quadrat <= QAM_Q[13];
       4'hE : qam_quadrat <= QAM_Q[14];
       4'hF : qam_quadrat <= QAM_Q[15];
+    endcase
+  end
+  
+  always_ff @(posedge clk) begin
+    unique case(qam_symbol[5:4])
+      2'b00 : qam_quadrat_o <= {1'b0,qam_quadrat};
+      2'b01 : qam_quadrat_o <= {1'b0,qam_quadrat};
+      2'b10 : qam_quadrat_o <= {1'b1,qam_quadrat};
+      2'b11 : qam_quadrat_o <= {1'b1,qam_quadrat};
     endcase
   end
   
