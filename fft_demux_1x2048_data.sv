@@ -16,22 +16,22 @@ module fft_bin2dec_1x16 #(
   
   always_ff @(posedge clk) begin
     unique case(data_sel[3:0])
-      4'h0 : data_o_valid <= 16'h0001;
-      4'h1 : data_o_valid <= 16'h0002;
-      4'h2 : data_o_valid <= 16'h0004;
-      4'h3 : data_o_valid <= 16'h0008;
-      4'h4 : data_o_valid <= 16'h0010;
-      4'h5 : data_o_valid <= 16'h0020;
-      4'h6 : data_o_valid <= 16'h0040;
-      4'h7 : data_o_valid <= 16'h0080;
-      4'h8 : data_o_valid <= 16'h0100;
-      4'h9 : data_o_valid <= 16'h0200;
-      4'hA : data_o_valid <= 16'h0400;
-      4'hB : data_o_valid <= 16'h0800;
-      4'hC : data_o_valid <= 16'h1000;
-      4'hD : data_o_valid <= 16'h2000;
-      4'hE : data_o_valid <= 16'h4000;
-      4'hF : data_o_valid <= 16'h8000;
+      4'h0 : data_o_valid <= {15'd0,data_i_valid};
+      4'h1 : data_o_valid <= {14'd0,data_i_valid,01'd0};
+      4'h2 : data_o_valid <= {13'd0,data_i_valid,02'd0};
+      4'h3 : data_o_valid <= {12'd0,data_i_valid,03'd0};
+      4'h4 : data_o_valid <= {11'd0,data_i_valid,04'd0};
+      4'h5 : data_o_valid <= {10'd0,data_i_valid,05'd0};
+      4'h6 : data_o_valid <= {09'd0,data_i_valid,06'd0};
+      4'h7 : data_o_valid <= {08'd0,data_i_valid,07'd0};
+      4'h8 : data_o_valid <= {07'd0,data_i_valid,08'd0};
+      4'h9 : data_o_valid <= {06'd0,data_i_valid,09'd0};
+      4'hA : data_o_valid <= {05'd0,data_i_valid,10'd0};
+      4'hB : data_o_valid <= {04'd0,data_i_valid,11'd0};
+      4'hC : data_o_valid <= {03'd0,data_i_valid,12'd0};
+      4'hD : data_o_valid <= {02'd0,data_i_valid,13'd0};
+      4'hE : data_o_valid <= {01'd0,data_i_valid,14'd0};
+      4'hF : data_o_valid <= {data_i_valid,15'd0};
     endcase
   end
   
