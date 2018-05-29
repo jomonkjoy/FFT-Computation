@@ -54,14 +54,14 @@ module fft_bin2dec_1x8 #(
   
   always_ff @(posedge clk) begin
     unique case(data_sel[2:0])
-      3'h0 : data_o_valid <= 8'h01;
-      3'h1 : data_o_valid <= 8'h02;
-      3'h2 : data_o_valid <= 8'h04;
-      3'h3 : data_o_valid <= 8'h08;
-      3'h4 : data_o_valid <= 8'h10;
-      3'h5 : data_o_valid <= 8'h20;
-      3'h6 : data_o_valid <= 8'h40;
-      3'h7 : data_o_valid <= 8'h80;
+      3'h0 : data_o_valid <= {7'b0,data_i_valid};
+      3'h1 : data_o_valid <= {6'b0,data_i_valid,1'b0};
+      3'h2 : data_o_valid <= {5'b0,data_i_valid,2'b0};
+      3'h3 : data_o_valid <= {4'b0,data_i_valid,3'b0};
+      3'h4 : data_o_valid <= {3'b0,data_i_valid,4'b0};
+      3'h5 : data_o_valid <= {2'b0,data_i_valid,5'b0};
+      3'h6 : data_o_valid <= {1'b0,data_i_valid,6'b0};
+      3'h7 : data_o_valid <= {data_i_valid,7'b0};
     endcase
   end
   
