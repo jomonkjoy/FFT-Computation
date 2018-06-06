@@ -25,9 +25,9 @@ module fft_complex_magnitude (
       min_value <= abs_q;
     end
   end
-  
+  // Mag = [1*max(I,Q)]+[(1/4)*min(I,Q)]
   always_ff @(posedge clk) begin
-    comp_m <= max_value + 2'd2 >> min_value;
+    comp_m <= max_value + (min_value >> 2'd2);
   end
   
 endmodule
